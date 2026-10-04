@@ -1,148 +1,200 @@
+/* ============================================================
+   GLOBAL RESET
+   Strips browser default margin, padding, and switches to
+   border-box sizing so padding is included in element widths.
+   ============================================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ============================================================
+   PAGE BODY
+   Centers content both vertically and horizontally.
+   Background is a soft warm off-white (#f7f7f4).
+   ============================================================ */
 body {
+    /* Inter is the primary typeface; the stack after it are OS fallbacks */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #f7f7f4;
+    background-color: #f7f7f4;     /* warm off-white canvas */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
+    justify-content: center;       /* horizontal centering */
+    align-items: center;           /* vertical centering */
+    min-height: 100vh;             /* fills the full browser height */
+    padding: 20px;                 /* breathing room on small screens */
 }
 
+/* ============================================================
+   CARDS CONTAINER
+   Lays out the pricing cards in a horizontal row.
+   Cards won't wrap — they always stay side by side.
+   ============================================================ */
 .cards-container {
     display: flex;
-    flex-direction: row;
-    gap: 24px;
-    flex-wrap: nowrap;
+    flex-direction: row;           /* left → right layout */
+    gap: 24px;                     /* space between the two cards */
+    flex-wrap: nowrap;             /* prevent stacking on resize */
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start;       /* align cards to their top edges */
 }
 
+/* ============================================================
+   CARD
+   The outer shell of each pricing tile.
+   Uses column flex so the CTA button sticks to the bottom.
+   ============================================================ */
 .card {
     display: flex;
-    flex-direction: column;
-    min-height: 380px;
-    background-color: #f2f1ed;
-    border-radius: 4px;
+    flex-direction: column;        /* stacks title → price → features → button */
+    min-height: 380px;             /* minimum card height so buttons align */
+    background-color: #f2f1ed;    /* slightly darker warm off-white than the page */
+    border-radius: 4px;            /* subtle rounded corners */
     padding: 16px;
     width: 320px;
-    flex-shrink: 0;
+    flex-shrink: 0;                /* prevents cards from squishing */
 }
 
+/* ============================================================
+   CARD TOP
+   Groups the plan name, price, and feature list.
+   Flex column lets each child stack naturally.
+   ============================================================ */
 .card-top {
     display: flex;
     flex-direction: column;
 }
 
+/* ── Plan name (e.g. "Hobby", "Pro") ── */
 .card-title {
     font-size: 22px;
     line-height: 28px;
-    font-weight: 400;
-    color: #26251e;
+    font-weight: 400;              /* intentionally light — not bold */
+    color: #26251e;                /* near-black warm dark */
     margin-bottom: 8px;
 }
 
+/* ── Price row wrapper (e.g. "$20 /mo.") ── */
 .card-price {
     font-size: 20px;
-    color: rgba(38, 37, 30, 0.5);
+    color: rgba(38, 37, 30, 0.5); /* 50% opacity of the dark color = muted */
     display: inline-flex;
-    align-items: baseline;
+    align-items: baseline;         /* aligns "$20" and "/mo." on the text baseline */
 }
 
+/* ── The numeric price or "Free" ── */
 .card-price-amount {
     font-size: 22px;
     font-weight: 400;
     color: rgba(38, 37, 30, 0.5);
 }
 
+/* ── The billing period label e.g. "/mo." ── */
 .card-price-period {
-    font-size: 14px;
+    font-size: 14px;               /* smaller than the amount for hierarchy */
     color: rgba(38, 37, 30, 0.5);
 }
 
+/* ── Feature list wrapper — adds space below before the button ── */
 .card-content {
     margin-bottom: 32px;
 }
 
+/* ── "Includes:" / "Everything in Hobby, plus:" label ── */
 .includes-text {
     font-size: 16px;
-    color: rgba(38, 37, 30, 0.5);
-    margin: 16px 0px;
+    color: rgba(38, 37, 30, 0.5); /* muted to de-emphasize the label */
+    margin: 16px 0px;              /* vertical rhythm between price and features */
 }
 
+/* ── Feature list — removes default bullet points ── */
 .features-list {
     list-style: none;
     padding: 0;
 }
 
+/* ── Individual feature row ── */
 .features-list li {
     display: flex;
-    align-items: center;
-    margin-bottom: 8px;
+    align-items: center;           /* vertically centers checkmark with text */
+    margin-bottom: 8px;            /* space between rows */
     font-size: 16px;
-    color: #26251e;
+    color: #26251e;                /* full-opacity dark for legibility */
 }
 
+/* ── Checkmark icon before each feature ── */
 .checkmark {
     color: #26251e;
     font-size: 14px;
-    margin-right: 10px;
+    margin-right: 10px;            /* gap between checkmark and label text */
     font-weight: 400;
 }
 
+/* ============================================================
+   CTA BUTTON — BASE (secondary / light style)
+   Sits at the bottom of the card via margin-top: auto.
+   Shared styles for both secondary and primary variants.
+   ============================================================ */
 .download-button {
-    margin-top: auto;
-    width: fit-content;
-    background-color: #e6e5e0;
+    margin-top: auto;              /* pushes button to the card's bottom edge */
+    width: fit-content;            /* button only as wide as its label */
+    background-color: #e6e5e0;    /* light warm gray */
     border: none;
-    border-radius: 999px;
+    border-radius: 999px;          /* pill shape */
     padding: 14px 24px;
     font-size: 16px;
     font-weight: 500;
     color: #333;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease; /* smooth hover/active feedback */
 }
 
+/* Hover state — slightly darker to signal interactivity */
 .download-button:hover {
     background-color: #D8D6CE;
 }
 
+/* Active (click) state — same as hover for a press effect */
 .download-button:active {
     background-color: #D8D6CE;
 }
 
+/* ============================================================
+   CTA BUTTON — PRIMARY (dark style, used on "Get Pro")
+   Overrides the base button with an inverted dark palette.
+   ============================================================ */
 .download-button.primary {
-    background-color: #111;
-    color: #fff;
+    background-color: #111;        /* near-black fill */
+    color: #fff;                   /* white label for contrast */
 }
 
 .download-button.primary:hover {
-    background-color: #333;
+    background-color: #333;        /* lightens slightly on hover */
 }
 
 .download-button.primary:active {
     background-color: #333;
 }
 
+/* ============================================================
+   PAGE LABEL
+   Fixed badge at the top of the viewport indicating
+   which version of the page is being viewed.
+   ============================================================ */
 .page-label {
-    position: fixed;
+    position: fixed;               /* stays in place while scrolling */
     top: 16px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%);   /* centers horizontally without knowing width */
     font-size: 14px;
     color: #666;
     background: #fff;
     padding: 8px 16px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* soft drop shadow for lift effect */
 }
 
+/* Bold portion of the label (e.g. "HTML version") */
 .page-label strong {
     color: #333;
 }

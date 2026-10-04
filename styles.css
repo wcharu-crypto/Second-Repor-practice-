@@ -177,6 +177,26 @@ body {
 }
 
 /* ============================================================
+   CTA BUTTON — TERTIARY (outlined / ghost style)
+   A transparent pill with a warm-dark border.
+   Sits between secondary (filled light) and primary (filled dark)
+   in visual weight — useful for lower-emphasis actions.
+   ============================================================ */
+.download-button.tertiary {
+    background-color: transparent;
+    border: 1.5px solid #26251e;   /* warm near-black border matches card text color */
+    color: #26251e;                /* label matches the border */
+}
+
+.download-button.tertiary:hover {
+    background-color: rgba(38, 37, 30, 0.06); /* very faint warm tint on hover */
+}
+
+.download-button.tertiary:active {
+    background-color: rgba(38, 37, 30, 0.12); /* slightly deeper on press */
+}
+
+/* ============================================================
    PAGE LABEL
    Fixed badge at the top of the viewport indicating
    which version of the page is being viewed.
